@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-data = pd.read_csv('gan_loss.csv')
+data = pd.read_csv('celeba_WGAN_GP.csv')
 
 # Plot the data
 plt.figure(figsize=(10, 6))
-plt.plot(data['D_loss'], label='Discrimintor loss', color='blue', marker='o')
-plt.plot(data['G_loss'], label='Generator loss', color='orange', marker='x')
+plt.plot(data['discriminator'], label='Discrimintor loss', color='blue')
+plt.plot(data['generator'], label='Generator loss', color='orange')
 
 # Customize the plot
 plt.title('Discriminator and Generator Losses Over Epochs', fontsize=16)

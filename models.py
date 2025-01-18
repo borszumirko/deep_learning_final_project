@@ -72,3 +72,36 @@ class Discriminator(nn.Module):
     def forward(self, img):
         out = self.model(img)
         return out
+
+
+class Critic(nn.Module):
+    def __init__(self, image_size, channels):
+        super(Critic, self).__init__()
+
+        self.model = nn.Sequential(
+            # Layer 1: 3 x 64 x 64 -> 128 x 32 x 32
+            nn.Conv2d(channels, 128, kernel_size=4, stride=2, padding=1, bias=False),
+            nn.LeakyReLU(0.2, inplace=True),
+
+            # Layer 2: 128 x 32 x 32 -> 256 x 16 x 16
+            nn.Conv2d(128, 256, kernel_size=4, stride=2, padding=1, bias=False),
+            nn.LeakyReLU(0.2, inplace=True),
+
+            # Layer 3: 256 x 16 x 16 -> 512 x 8 x 8
+            nn.Conv2d(256, 512, kernel_size=4, stride=2, padding=1, bias=False),
+            nn.LeakyReLU(0.2, inplace=True),
+
+            # Layer 4: 512 x 8 x 8 -> 1024 x 4 x 4
+            nn.Conv2d(512, 1024, kernel_size=4, stride=2, padding=1, bias=False),
+            nn.LeakyReLU(0.2, inplace=True),
+            
+            nn.Conv2d(1024, 1, kernel_size=4, stride=1, padding=0, bias=False),
+            # out: 1 x 1 x 1
+
+            nn.Flatten(),
+        )
+
+
+    def forward(self, img):
+        out = self.model(img)
+        return out
