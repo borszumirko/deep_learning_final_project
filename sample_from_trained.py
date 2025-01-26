@@ -5,7 +5,7 @@ from models import Generator
 
 generator = Generator(100, 3, 64)
 
-generator.load_state_dict(torch.load('generator_celeba_80.pth', map_location=torch.device('cpu')))
+generator.load_state_dict(torch.load('trained_models/generator_WGANGP_HQ.pth', map_location=torch.device('cpu')))
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 generator.to(device)
@@ -16,7 +16,7 @@ z = torch.randn(batch_size, 100, 1, 1, device=device)  # Noise vector
 with torch.no_grad():
     generator.eval()
     fake_images = generator(z)
-
+print(fake_images[0].shape)
 fake_images = (fake_images * 0.5 + 0.5).cpu()  # Rescale from [-1, 1] to [0, 1]
 
 
