@@ -1,7 +1,7 @@
 import torch
 from training import train_DCGAN, train_WGAN_GP
 from load_dataset import get_DataLoader
-from models import Generator, Generator128, Discriminator, Discriminator128, Critic, Critic128
+from models import Generator, Discriminator, Critic
 import numpy as np
 
 

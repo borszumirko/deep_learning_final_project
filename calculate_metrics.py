@@ -38,7 +38,6 @@ def load_images_from_folder(folder_path, max_images=1000, image_size=64):
 
 def compute_fid(generator, real_images_path, num_generated_images=1000, latent_dim=100, batch_size=16):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
     generator.to(device)
     generator.eval()
 

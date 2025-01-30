@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-from models import Generator, Discriminator, Critic, Generator128, Discriminator128, Critic128
+from models import Generator, Discriminator
 
 # source: https://www.kaggle.com/code/rafat97/pytorch-wasserstein-gan-wgan
 def get_gradient(crit, real, fake, epsilon):
